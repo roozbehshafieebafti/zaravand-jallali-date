@@ -1,0 +1,22 @@
+{
+  "name": "zaravand-jallali-date",
+  "version": "1.0.0",
+  "description": "calculate gregorian date to jallali date and reverse",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roozbehshafieebafti/zaravand-jallali-date.git"
+  },
+  "keywords": [
+    "zaravand"
+  ],
+  "author": "roozbeh shafiee bafti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roozbehshafieebafti/zaravand-jallali-date/issues"
+  },
+  "homepage": "https://github.com/roozbehshafieebafti/zaravand-jallali-date#readme"
+}
