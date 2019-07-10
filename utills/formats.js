@@ -217,8 +217,8 @@ const format = [
   },
 
   {
-    human: "YYYY/MM/DDTHH:MM:SS",
-    hRegix: /^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][Ss]$/,
+    human: "YYYY/MM/DDTHH:MM:SS.S",
+    hRegix: /^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][Ss](\.)[Ss]$/,
     dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
@@ -243,30 +243,74 @@ const format = [
       if (gy)
         return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
           gd > 9 ? gd : "0" + gd
-        } T ${hours[0]}:${hours[1]}:${hours[2]}`;
+        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${hours[2]}`;
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
-        } T ${hours[0]}:${hours[1]}:${hours[2]}`;
+        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${hours[2]}`;
+    }
+  },
+
+  {
+    human: "YYYY/MM/DDTHH:MM:SS",
+    hRegix: /^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][Ss]$/,
+    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/,
+    date_splicer: function(date) {
+      let year = date.slice(0, 4);
+      let TMonth = date.match(/^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9]/);
+      let month = TMonth[0].match(/[0-9]?[0-9]$/);
+      let Tday = date.match(
+        /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
+      );
+      let day = Tday[0].match(/[0-9]?[0-9]$/);
+
+      let THour = date.match(
+        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/
+      );
+      let hour = THour[0].match(/^[0-9]?[0-9]/);
+      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9]$/);
+      let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
+      let TSec = date.match(/[0-9]?[0-9]$/);
+      let sec = TSec[0].match(/^[0-9]?[0-9]/);
+      return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
+    },
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
+      if (gy)
+        return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
+          gd > 9 ? gd : "0" + gd
+        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${sec > 1 ? sec : "0" + sec}`;
+      if (jy)
+        return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
+          jd > 9 ? jd : "0" + jd
+        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${hours[2].length > 1 ? hours[2] : "0" + hours[2]}`;
     }
   },
 
   {
     human: "HH:MM:SS",
     hRegix: /^[Hh][Hh]:[Mm][Mm]:[Ss][Ss]$/,
-    dRegix: /^[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)$/,
+    dRegix: /^[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/,
     date_splicer: function(date) {
-      let hour = date.match(/^[0-9]?[0-9]$/);
+      let hour = date.match(/^[0-9]?[0-9]/);
       let TMiniut = date.match(/^[0-9]?[0-9][:][0-9]?[0-9]/);
       let miniut = TMiniut[0].match(/[0-9]?[0-9]$/);
-      let TSec = date.match(/[0-9]?[0-9](\.)([0-9]+)$/);
+      let sec = date.match(/[0-9]?[0-9]$/);
 
-      return [hour[0], miniut[0], TSec[0]];
+      return [hour[0], miniut[0], sec[0]];
     },
     date_merger: function({ hours }, sep, date = "") {
+      let sec = String(Math.floor(hours[2]));
       return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
-        hours[1].length > 1? hours[1] : "0" + hours[1]
-      }${sep}${hours[2].length > 1 ? hours[2] : "0" + hours[2]}`;
+        hours[1].length > 1 ? hours[1] : "0" + hours[1]
+      }${sep}${sec > 9 ? sec : "0" + sec}`;
     }
   },
 
@@ -281,7 +325,7 @@ const format = [
     },
     date_merger: function({ hours }, sep, date = "") {
       return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
-        hours[1].length > 1? hours[1] : "0" + hours[1]
+        hours[1].length > 1 ? hours[1] : "0" + hours[1]
       }`;
     }
   }
