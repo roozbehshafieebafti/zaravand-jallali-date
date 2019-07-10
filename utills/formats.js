@@ -264,9 +264,25 @@ const format = [
       return [hour[0], miniut[0], TSec[0]];
     },
     date_merger: function({ hours }, sep, date = "") {
-      return `${hours[0] > 9 ? hours[0] : "0" + hours[0]}${sep}${
-        hours[1] > 9 ? hours[1] : "0" + hours[1]
-      }${sep}${hours[2] > 9 ? hours[2] : "0" + hours[2]}`;
+      return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
+        hours[1].length > 1? hours[1] : "0" + hours[1]
+      }${sep}${hours[2].length > 1 ? hours[2] : "0" + hours[2]}`;
+    }
+  },
+
+  {
+    human: "HH:MM",
+    hRegix: /^[Hh][Hh]:[Mm][Mm]$/,
+    dRegix: /^[0-9]?[0-9][:][0-9]?[0-9]$/,
+    date_splicer: function(date) {
+      let hour = date.match(/^[0-9]?[0-9]$/);
+      let miniut = date.match(/[0-9]?[0-9]$/);
+      return [hour[0], miniut[0]];
+    },
+    date_merger: function({ hours }, sep, date = "") {
+      return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
+        hours[1].length > 1? hours[1] : "0" + hours[1]
+      }`;
     }
   }
 ];
