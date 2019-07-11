@@ -30,6 +30,7 @@ function ZaravandDate() {
 
     // محاسبات جهت تایین فرمت ورودی
     for (let i = 0; i < this.formats.length; i++) {
+      if(this.formats[i].dRegix === false) continue;
       if (this.formats[i].dRegix.test(date.trim())) {
         findInputRegix = true;
         formatIndex_Input = i;

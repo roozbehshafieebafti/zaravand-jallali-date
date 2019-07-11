@@ -267,10 +267,7 @@ const format = [
         /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
       );
       let day = Tday[0].match(/[0-9]?[0-9]$/);
-
-      let THour = date.match(
-        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/
-      );
+      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/);
       let hour = THour[0].match(/^[0-9]?[0-9]/);
       let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9]$/);
       let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
@@ -297,7 +294,7 @@ const format = [
   {
     human: "HH:MM:SS",
     hRegix: /^[Hh][Hh]:[Mm][Mm]:[Ss][Ss]$/,
-    dRegix: /^[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/,
+    dRegix: false,
     date_splicer: function(date) {
       let hour = date.match(/^[0-9]?[0-9]/);
       let TMiniut = date.match(/^[0-9]?[0-9][:][0-9]?[0-9]/);
@@ -317,7 +314,7 @@ const format = [
   {
     human: "HH:MM",
     hRegix: /^[Hh][Hh]:[Mm][Mm]$/,
-    dRegix: /^[0-9]?[0-9][:][0-9]?[0-9]$/,
+    dRegix: false,
     date_splicer: function(date) {
       let hour = date.match(/^[0-9]?[0-9]$/);
       let miniut = date.match(/[0-9]?[0-9]$/);
@@ -327,6 +324,36 @@ const format = [
       return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
         hours[1].length > 1 ? hours[1] : "0" + hours[1]
       }`;
+    }
+  },
+
+  {
+    human: "RAW",
+    hRegix: /^[Rr][Aa][Ww]$/,
+    dRegix: false,
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
+      if (gy)
+        return {
+          year: gy,
+          month: gm,
+          Month: calculation.get_gregorian_month(gm),
+          day: gd,
+          dweek: calculation.gregorian_day_week(gy + "/" + gm + "/" + gd),
+          hour: Number(hours[0]),
+          minute: Number(hours[1]),
+          second: Number(hours[2])
+        };
+      if (jy)
+        return {
+          year: jy,
+          month: jm,
+          Month: calculation.get_persian_month(jm),
+          day: jd,
+          dweek: calculation.persian_day_week(date),
+          hour: Number(hours[0]),
+          minute: Number(hours[1]),
+          second: Number(hours[2]) 
+        };
     }
   }
 ];

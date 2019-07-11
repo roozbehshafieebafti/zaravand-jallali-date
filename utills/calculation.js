@@ -404,7 +404,7 @@ function get_gregorian_month(month) {
 
 function find_seperator (output) {
   let seprator = output.match(/[-_/ :\\\.]/);
-  return seprator[0];
+  return (seprator===null ? null : seprator[0] );
 }
 
 function persian_day_week(Day) {
