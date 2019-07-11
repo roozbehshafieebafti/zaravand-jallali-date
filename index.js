@@ -91,4 +91,43 @@ function ZaravandDate() {
   };
 }
 
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار سال را بر می‌گرداند
+ZaravandDate.prototype.year = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.year !== undefined){
+    return _date.year;
+  }
+}
+
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار ماه را بر می‌گرداند
+ZaravandDate.prototype.month = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.month !== undefined){
+    return _date.month;
+  }
+}
+
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار نام ماه را بر می‌گرداند
+ZaravandDate.prototype.Month = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.Month !== undefined){
+    return _date.Month;
+  }
+}
+
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار روز را بر می‌گرداند
+ZaravandDate.prototype.day = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.day !== undefined){
+    return _date.day;
+  }
+}
+
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار روز هفته را بر می‌گرداند
+ZaravandDate.prototype.week = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.dweek !== undefined){
+    return _date.dweek;
+  }
+}
 module.exports = ZaravandDate;
