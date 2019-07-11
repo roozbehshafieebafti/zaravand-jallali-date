@@ -71,7 +71,7 @@ function ZaravandDate() {
           "فرمت‌های موجود در برنامه، با فرمت وارد شده تناسب ندارد"
         ]);
         this.showErrors(["فرمت خروجی شما = ", outputFormat]);
-        this.showErrors(["آدرس گیت هاب میخواهد"]);
+        this.showErrors(["https://github.com/roozbehshafieebafti/zaravand-jallali-date"]);
         return null;
       }
     }
@@ -81,7 +81,7 @@ function ZaravandDate() {
     else {
       this.showErrors(["فرمت‌های موجود با تاریخ وارد شده تناسب ندارد"]);
       this.showErrors(["تاریخ وارد شده= ", date]);
-      this.showErrors(["آدرس گیت هاب میخواهد"]);
+      this.showErrors(["https://github.com/roozbehshafieebafti/zaravand-jallali-date"]);
       return null;
     }
   };
