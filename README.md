@@ -121,9 +121,31 @@ date | string | - | -
 kind | string | "fa" or "en" | -
 format | string | - | "yyyy/mm/dd"
 
+
+<div dir="rtl">
+    لیست کامل فرمت‌ها : 
+    <br/>
+    فرمت‌های زیر قابل استفاده برای آرگومان date  و format  می‌باشند - توجه داشته باشید که فرمت‌های ستاره دار فقط مخصوص آرگومان فرمت هستند
+    <br/><br/>
+</div>
+
+1.YYYY/MM/DD : ex. --> 2019/07/12
+2.DD/MM/YYYY : ex. --> 12/07/2019
+3.YYYY/MMM/DD : ex. --> 2019/July/12
+4.DD/MMM/YYYY : ex. --> 12/July/2019
+5.MMM/YYYY : ex. --> July/2019
+6.YYYY/MMM : ex. --> 2019/July
+7.YYYY/MM/DD/WW : ex. --> 2019/07/12 - Friday
+8.YYYY/MMM/DD/WW : ex. --> 2019/July/12 - Friday
+9.YYYY/MM/DDTHH:MM:SS.S : ex. --> 2019/07/12 T 00:00:0
+
+10.HH:MM:SS *  : ex. --> 00:00:00
+11.HH:MM * : ex. --> 00:00
+12.RAW * : ex. --> object
+
 <div dir="rtl">
     مثال <br/>
-    (تمامی فرمت‌های استفاده شده در خروجی را می‌توان برای ورودی نیز به کار برد به غیر از آنهایی که ستاره* دار هستند)
+    <br/>
 </div>
 
 syntax | output format | result
@@ -136,7 +158,6 @@ syntax | output format | result
  _date.convert("2019/7/12", "fa" , "YYYY/MM/DD/WW") | "YYYY/MM/DD/WW" |1398/04/21 - جمعه
  _date.convert("2019/7/12", "fa" , "YYYY/MMM/DD/WW") | "YYYY/MMM/DD/WW" |1398/تیرl/21 - جمعه
  _date.convert("2019/7/12T22:22:22.12", "fa" , "YYYY/MM/DDTHH:MM:SS.S") | "YYYY/MM/DDTHH:MM:SS.S" | 1398/04/21 T 22:22:22.12
- _date.convert("2019/7/12T22:22:22.12", "fa" , "YYYY/MM/DDTHH:MM:SS") | "YYYY/MM/DDTHH:MM:SS" | 1398/04/21 T 22:22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM:SS") | "HH:MM:SS" * | 22:22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM") | "HH:MM" * | 22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "RAW") | "RAW" * | {Month: "تیر",day: 21,dweek: "جمعه",hour: 22,minute: 22,month: 4,second: 22.12,year: 1398,}
