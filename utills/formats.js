@@ -372,7 +372,7 @@ const format = [
       let TMiniut = THour[0].match(/^[0-9]?[0-9][:][0-9]?[0-9]/);
       let miniut = TMiniut[0].match(/[0-9]?[0-9]$/);
       let sec = THour[0].match(/[0-9]?[0-9]$/);
-      return [year[0], month[0], day[0], [hour[0], miniut[0], sec[0]]];
+      return [year[0],calculation.understand_gregorian_month(month[0]), day[0], [hour[0], miniut[0], sec[0]]];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
   },
