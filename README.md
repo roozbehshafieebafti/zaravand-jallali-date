@@ -156,3 +156,29 @@ syntax | output format | result
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM:SS") | "HH:MM:SS" * | 22:22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM") | "HH:MM" * | 22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "RAW") | "RAW" * | {Month: "تیر",day: 21,dweek: "جمعه",hour: 22,minute: 22,month: 4,second: 22.12,year: 1398,}
+
+
+<div dir="rtl">
+    4. استفاده از متدهای خاص<br/><br/>
+    ممکن است شما بخواهید از یک تاریخ ورودی فقط سال، ماه، روز یا نام هفته را بیرون بکشید. در این صورت کافی است از متدهای زیر استفاده کنید
+    <br/><br/>
+</div>
+<div dir="rtl">
+    > آرگومان‌های ورودی در این متدها کاملا شبیه متد convert بوده با این تفاوت که آرگومان سوم در این توابع وجود ندارد. 
+</div>
+
+
+method name | syntax | result
+--- | --- | ---
+year | _date.year(Date(),"fa") | 1398
+Month | _date.Month(Date(),"fa") | تیر
+month | _date.month(Date(),"fa") | 4
+day | _date.day(Date(),"fa") | 21
+week | _date.week(Date(),"fa") | جمعه
+
+
+
+## <div dir="rtl" id="usage">خطا یابی</div>
+<div dir="rtl">
+    در این کتابخانه در صورتی که خطایی در آرگومان‌های ورودی موجود باشد، نوع خطا در لاگ نمایش داده می‌شود.
+</div>
