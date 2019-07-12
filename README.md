@@ -11,17 +11,7 @@ calculate gregorian date to jallali date and reverse
 
 
 
-## <div dir="rtl" >فهرست</div>
-
-<div dir="rtl">
-    [نصب](#نصب) <br/>
-    [استفاده سریع](#استفاده_سریع)
-</div>
-
-
-
-
-### <div dir="rtl" >نصب</div>
+## <div dir="rtl" >نصب</div>
 
 <p dir="rtl">
     برای نصب این کتابخانه می‌توانید از سیستم مدیرت بسته نود استفاده کنید:
@@ -43,7 +33,7 @@ calculate gregorian date to jallali date and reverse
 
 
 
-### <div dir="rtl" id="usage">استفاده سریع</div>
+## <div dir="rtl" id="usage">استفاده سریع</div>
 
 <p dir="rtl">
     جهت استفاده سریع از این کتابخانه و تبدیل تاریخ مورد نظر خود، کافی‌ست دستورالعمل زیر را به کار بگیرید
@@ -65,7 +55,7 @@ calculate gregorian date to jallali date and reverse
 
 
 
-### <div dir="rtl" id="steptosetp">آموزش قدم به قدم</div>
+## <div dir="rtl" id="steptosetp">آموزش قدم به قدم</div>
 
 <div dir="rtl">
     1. فراخوانی کتابخانه - 
