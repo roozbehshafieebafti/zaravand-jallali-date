@@ -139,12 +139,4 @@ syntax | output format | result
  _date.convert("2019/7/12T22:22:22.12", "fa" , "YYYY/MM/DDTHH:MM:SS") | "YYYY/MM/DDTHH:MM:SS" | 1398/04/21 T 22:22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM:SS") | "HH:MM:SS" * | 22:22:22
  _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM") | "HH:MM" * | 22:22
- _date.convert("2019/7/12T22:22:22.12", "fa" , "RAW") | "RAW" * | {Month: "تیر"
-day: 21,
-dweek: "جمعه",
-hour: 22,
-minute: 22,
-month: 4,
-second: 22.12,
-year: 1398,
- }
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "RAW") | "RAW" * | {Month: "تیر",day: 21,dweek: "جمعه",hour: 22,minute: 22,month: 4,second: 22.12,year: 1398,}
