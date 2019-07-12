@@ -355,7 +355,27 @@ const format = [
           second: Number(hours[2]) 
         };
     }
-  }
+  },
+
+  {
+    human: "DATE",
+    hRegix: false,
+    dRegix: /^[a-zA-Z]+[ ][a-zA-Z]+[ ][0-9]?[0-9][ ][0-9][0-9][0-9][0-9][ ][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]/,
+    date_splicer: function(date) {
+      let year = date.match(/[0-9][0-9][0-9][0-9]/);
+      let TMonth = date.match(/^[a-zA-Z]+[ ][a-zA-Z]+/);
+      let month = TMonth[0].match(/[a-zA-Z]+$/);
+      let Tday = date.match( /^[a-zA-Z]+[ ][a-zA-Z]+[ ][0-9]?[0-9]/);
+      let day = Tday[0].match(/[0-9]?[0-9]$/);
+      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]/);
+      let hour = THour[0].match(/^[0-9]?[0-9]/);
+      let TMiniut = THour[0].match(/^[0-9]?[0-9][:][0-9]?[0-9]/);
+      let miniut = TMiniut[0].match(/[0-9]?[0-9]$/);
+      let sec = THour[0].match(/[0-9]?[0-9]$/);
+      return [year[0], month[0], day[0], [hour[0], miniut[0], sec[0]]];
+    },
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
+  },
 ];
 
 module.exports = { format };

@@ -40,6 +40,7 @@ function ZaravandDate() {
 
     // محاسبات جهت تایین فرمت خروجی
     for (let i = 0; i < this.formats.length; i++) {
+      if(this.formats[i].hRegix === false) continue;
       if (this.formats[i].hRegix.test(outputFormat.trim())) {
         findOutputFromat = true;
         formatIndex_Output = i;

@@ -14,7 +14,7 @@ calculate gregorian date to jallali date and reverse
 ## <div dir="rtl" >نصب</div>
 
 <p dir="rtl">
-    برای نصب این کتابخانه می‌توانید از سیستم مدیرت بسته نود استفاده کنید:
+    برای نصب این کتابخانه می‌توانید از سیستم مدیرت بسته نود (npm) استفاده کنید:
 </p>
 
 ```javascript
@@ -22,7 +22,7 @@ calculate gregorian date to jallali date and reverse
 ```
 
 <p dir="rtl">
-    درصورتی که از  یارن برای نصب استفاده می‌کنید:
+    درصورتی که از  yarn برای نصب استفاده می‌کنید:
 </p>
 
 ```javascript
@@ -79,7 +79,7 @@ calculate gregorian date to jallali date and reverse
     3. استفاده از متد convert<br/><br/>
 </div>
 <div dir="rtl">
-    در شی تعریف شده یک متد با نام کانورت وجود دارد که وظیفه تبدیل تاریخ به عهده آن است
+    در شی تعریف شده یک متد با نام convert وجود دارد که وظیفه تبدیل تاریخ به عهده آن است
     این متد، 3 پارامتر به عنوان ورودی می‌گیرد که سومین پارامتر اختیاری بوده و برحسب نیاز شما وارد می‌شود
     <br/><br/>
 </div>
@@ -113,29 +113,30 @@ Name | type | amount | deafult
 --- | --- | --- | ---
 date | string | - | -
 kind | string | "fa" or "en" | -
-format | string | - | "yyyy/mm/dd"
+output format | string | - | "yyyy/mm/dd"
 
 
 <div dir="rtl">
     لیست کامل فرمت‌ها : 
     <br/>
-    فرمت‌های زیر قابل استفاده برای آرگومان date  و format  می‌باشند - توجه داشته باشید که فرمت‌های ستاره دار فقط مخصوص آرگومان فرمت هستند
+    فرمت‌های زیر قابل استفاده برای آرگومان date  و output format   می‌باشند - توجه داشته باشید که فرمت‌های ستاره دار فقط مخصوص آرگومان output format  هستند
     <br/><br/>
 </div>
 
-1.YYYY/MM/DD               : ex. --> 2019/07/12 <br/>
-2.DD/MM/YYYY               : ex. --> 12/07/2019 <br/>
-3.YYYY/MMM/DD              : ex. --> 2019/July/12 <br/>
-4.DD/MMM/YYYY              : ex. --> 12/July/2019 <br/>
-5.MMM/YYYY                 : ex. --> July/2019 <br/>
-6.YYYY/MMM                 : ex. --> 2019/July <br/>
-7.YYYY/MM/DD/WW            : ex. --> 2019/07/12 - Friday <br/>
-8.YYYY/MMM/DD/WW           : ex. --> 2019/July/12 - Friday <br/>
-9.YYYY/MM/DDTHH:MM:SS.S    : ex. --> 2019/07/12 T 00:00:0 <br/>
-
-10.HH:MM:SS *              : ex. --> 00:00:00 <br/>
-11.HH:MM *                 : ex. --> 00:00 <br/>
-12.RAW *                   : ex. --> object <br/>
+number|formats| example
+--- | --- | ---
+1|YYYY/MM/DD| 2019/07/12 
+2|DD/MM/YYYY|12/07/2019 
+3|YYYY/MMM/DD|2019/July/12 
+4|DD/MMM/YYYY|12/July/2019 
+5|MMM/YYYY|July/2019 
+6|YYYY/MMM |2019/July 
+7|YYYY/MM/DD/WW|2019/07/12 - Friday 
+8|YYYY/MMM/DD/WW|2019/July/12 - Friday 
+9|YYYY/MM/DDTHH:MM:SS.S|2019/07/12 T 00:00:0 
+10|HH:MM:SS *|00:00:00 
+11|HH:MM *|00:00 
+12|RAW *|object 
 
 <div dir="rtl">
     مثال <br/>
