@@ -5,30 +5,32 @@ calculate gregorian date to jallali date and reverse
 تاریخ جلالی زراوند یک برنامه براساس زبان جاوااسکریپت در محیط اجرایی نود است، که جهت تبدیل تاریخ میلادی به شمسی و بلعکس می‌توان از آن استفاده کرد
 </p>
 
-<p style="text-align: right">
-    از آنجایی که بیشتر کاربران این برنامه متکلم به زبان فارسی هستند، اسناد این برنامه کاملا به زبان فارسی تهیه شده تا بدون فوت وقت مورد استفاده قرار گیرد
+<p>
+    از آنجایی که بیشتر کاربران این برنامه متکلم به زبان فارسی هستند، تا حد امکان سعی شده اسناد این برنامه به زبان فارسی تهیه شود
 </p>
 
-##فهرست
+## فهرست
 
 ---
 
-###نصب
+### نصب
 <p style="text-align: right">
     برای نصب این برنامه می‌توانید از سیستم مدیرت بسته نود(npm) استفاده کنید
 </p>
-```
+
+```javascript
     npm install zaravand-jallali-date
 ```
 
 <p style="text-align: right">
     درصورتی که برای نصب از (yarn) استفاده می‌کنید:
 </p>
-```
+
+```javascript
     yarn add zaravand-jallali-date
 ```
 
-###استفاده سریع
+### استفاده سریع
 
 <p style="text-align: right">
     جهت استفاده سریع از این برنامه و تبدیل تاریخ مورد نظر خود، کافی‌ست دستورالعمل زیر را به کار بگیرید
@@ -42,7 +44,7 @@ calculate gregorian date to jallali date and reverse
 
     //to jallali
     let result =  _date.convert("2019/7/12", "fa");  // 1398/04/21   
-    
+
     // to gregorian
     let result =  _date.convert("2019/7/12", "fa");  // 2019/07/12 
 
