@@ -55,7 +55,7 @@ calculate gregorian date to jallali date and reverse
     let result =  _date.convert("2019/7/12", "fa");  // 1398/04/21   
 
     // to gregorian
-    let result =  _date.convert("2019/7/12", "fa");  // 2019/07/12 
+    let result =  _date.convert("1398/04/21", "en");  // 2019/07/12 
 
 ```
 
@@ -121,3 +121,30 @@ date | string | - | -
 kind | string | "fa" or "en" | -
 format | string | - | "yyyy/mm/dd"
 
+<div dir="rtl">
+    مثال <br/>
+    (تمامی فرمت‌های استفاده شده در خروجی را می‌توان برای ورودی نیز به کار برد به غیر از آنهایی که ستاره* دار هستند)
+</div>
+
+syntax | output format | result
+--- | --- | ---
+ _date.convert("2019/7/12", "fa" , "DD/MM/YYYY") | "DD/MM/YYYY" | 21/04/1398
+ _date.convert("2019/7/12", "fa" , "YYYY/MMM/DD") | "YYYY/MMM/DD" |1398/تیرl/21
+ _date.convert("2019/7/12", "fa" , "DD/MMM/YYYY") | "DD/MMM/YYYY" |21/تیرl/1398
+ _date.convert("2019/7/12", "fa" , "MMM/YYYY") | "MMM/YYYY" |تیرl/1398
+ _date.convert("2019/7/12", "fa" , "YYYY/MMM") | "YYYY/MMM" |تیر/1398
+ _date.convert("2019/7/12", "fa" , "YYYY/MM/DD/WW") | "YYYY/MM/DD/WW" |1398/04/21 - جمعه
+ _date.convert("2019/7/12", "fa" , "YYYY/MMM/DD/WW") | "YYYY/MMM/DD/WW" |1398/تیرl/21 - جمعه
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "YYYY/MM/DDTHH:MM:SS.S") | "YYYY/MM/DDTHH:MM:SS.S" | 1398/04/21 T 22:22:22.12
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "YYYY/MM/DDTHH:MM:SS") | "YYYY/MM/DDTHH:MM:SS" | 1398/04/21 T 22:22:22
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM:SS") | "HH:MM:SS" * | 22:22:22
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "HH:MM") | "HH:MM" * | 22:22
+ _date.convert("2019/7/12T22:22:22.12", "fa" , "RAW") | "RAW" * | {Month: "تیر"
+day: 21,
+dweek: "جمعه",
+hour: 22,
+minute: 22,
+month: 4,
+second: 22.12,
+year: 1398,
+ }
