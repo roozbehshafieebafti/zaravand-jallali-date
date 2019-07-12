@@ -14,15 +14,14 @@ calculate gregorian date to jallali date and reverse
 ## <div dir="rtl" >فهرست</div>
 
 <div dir="rtl">
-    [نصب](https://github.com/roozbehshafieebafti/zaravand-jallali-date/#install)
-    [استفاده سریع](https://github.com/roozbehshafieebafti/zaravand-jallali-date/#usage)
-    [آموزش قدم به قدم](https://github.com/roozbehshafieebafti/zaravand-jallali-date/#steptosetp)
+    [نصب](#نصب) <br/>
+    [استفاده سریع](#استفاده_سریع)
 </div>
 
 
 
 
-### <div dir="rtl" id="install" >نصب</div>
+### <div dir="rtl" >نصب</div>
 
 <p dir="rtl">
     برای نصب این کتابخانه می‌توانید از سیستم مدیرت بسته نود استفاده کنید:
