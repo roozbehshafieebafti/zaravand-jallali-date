@@ -129,19 +129,19 @@ format | string | - | "yyyy/mm/dd"
     <br/><br/>
 </div>
 
-1.YYYY/MM/DD : ex. --> 2019/07/12
-2.DD/MM/YYYY : ex. --> 12/07/2019
-3.YYYY/MMM/DD : ex. --> 2019/July/12
-4.DD/MMM/YYYY : ex. --> 12/July/2019
-5.MMM/YYYY : ex. --> July/2019
-6.YYYY/MMM : ex. --> 2019/July
-7.YYYY/MM/DD/WW : ex. --> 2019/07/12 - Friday
-8.YYYY/MMM/DD/WW : ex. --> 2019/July/12 - Friday
-9.YYYY/MM/DDTHH:MM:SS.S : ex. --> 2019/07/12 T 00:00:0
+1.YYYY/MM/DD : ex. --> 2019/07/12 <br/>
+2.DD/MM/YYYY : ex. --> 12/07/2019 <br/>
+3.YYYY/MMM/DD : ex. --> 2019/July/12 <br/>
+4.DD/MMM/YYYY : ex. --> 12/July/2019 <br/>
+5.MMM/YYYY : ex. --> July/2019 <br/>
+6.YYYY/MMM : ex. --> 2019/July <br/>
+7.YYYY/MM/DD/WW : ex. --> 2019/07/12 - Friday <br/>
+8.YYYY/MMM/DD/WW : ex. --> 2019/July/12 - Friday <br/>
+9.YYYY/MM/DDTHH:MM:SS.S : ex. --> 2019/07/12 T 00:00:0 <br/>
 
-10.HH:MM:SS *  : ex. --> 00:00:00
-11.HH:MM * : ex. --> 00:00
-12.RAW * : ex. --> object
+10.HH:MM:SS *  : ex. --> 00:00:00 <br/>
+11.HH:MM * : ex. --> 00:00 <br/>
+12.RAW * : ex. --> object <br/>
 
 <div dir="rtl">
     مثال <br/>
