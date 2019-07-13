@@ -58,6 +58,7 @@ calculate gregorian date to jallali date and reverse
 </div>
 
 seprator | exampele
+--- | ---
 / | 1398/01/01
 \ | 1398\01\01
 [space] | 1398 01 01
