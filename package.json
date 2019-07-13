@@ -1,6 +1,6 @@
 {
   "name": "zaravand-jallali-date",
-  "version": "1.5.3",
+  "version": "1.5.5",
   "description": "calculate gregorian date to jallali date and reverse",
   "main": "index.js",
   "scripts": {

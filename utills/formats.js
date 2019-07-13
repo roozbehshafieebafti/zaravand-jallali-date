@@ -281,13 +281,13 @@ const format = [
           gd > 9 ? gd : "0" + gd
         } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
-        }:${sec > 1 ? sec : "0" + sec}`;
+        }:${Math.floor(hours[2]) > 9 ? Math.floor(hours[2]) : "0"+ Math.floor(hours[2])}`;
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
         } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
-        }:${hours[2].length > 1 ? hours[2] : "0" + hours[2]}`;
+        }:${Math.floor(hours[2]) > 9 ? Math.floor(hours[2]) : "0"+ Math.floor(hours[2])}`;
     }
   },
 
