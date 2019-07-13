@@ -52,7 +52,16 @@ calculate gregorian date to jallali date and reverse
     let result =  _date.convert("1398/04/21", "en");  // 2019/07/12 
 
 ```
-
+<div dir="rtl">
+    **جدا کننده‌های زیر برای تاریخ ورودی قابل قبول‌اند**
+    <br/><br/>
+    1./         --> 1398/01/01 <br/>
+    2.\         --> 1398\01\01 <br/>
+    3.[space]   --> 1398 01 01 <br/>
+    4.-         --> 1398-01-01 <br/>
+    5._         --> 1398_01_01 <br/>
+    <br/>
+</div>
 
 
 ## <div dir="rtl" id="steptosetp">آموزش قدم به قدم</div>

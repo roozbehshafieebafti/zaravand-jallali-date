@@ -1,6 +1,6 @@
 {
   "name": "zaravand-jallali-date",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "calculate gregorian date to jallali date and reverse",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/roozbehshafieebafti/zaravand-jallali-date.git"
   },
   "keywords": [
-    "zaravand"
+    "zaravand", "date" , "jallali date" , "jallali To gregorian" , "zaravand-jallali-date" , "moment"
   ],
   "author": "roozbeh shafiee bafti",
   "license": "MIT",
