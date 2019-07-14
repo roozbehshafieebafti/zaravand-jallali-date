@@ -194,3 +194,6 @@ week | _date.week(Date(),"fa") | جمعه
 <div dir="rtl">
     در این کتابخانه در صورتی که خطایی در آرگومان‌های ورودی موجود باشد، نوع خطا در لاگ نمایش داده می‌شود.
 </div>
+
+## <div dir="rtl" id="usage">پیوند</div>
+[read-more](https://zaravand.com/zaravand-jallali-date)
