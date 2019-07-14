@@ -281,13 +281,21 @@ const format = [
           gd > 9 ? gd : "0" + gd
         } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
-        }:${Math.floor(hours[2]) > 9 ? Math.floor(hours[2]) : "0"+ Math.floor(hours[2])}`;
+        }:${
+          Math.floor(hours[2]) > 9
+            ? Math.floor(hours[2])
+            : "0" + Math.floor(hours[2])
+        }`;
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
         } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
-        }:${Math.floor(hours[2]) > 9 ? Math.floor(hours[2]) : "0"+ Math.floor(hours[2])}`;
+        }:${
+          Math.floor(hours[2]) > 9
+            ? Math.floor(hours[2])
+            : "0" + Math.floor(hours[2])
+        }`;
     }
   },
 
@@ -341,7 +349,20 @@ const format = [
           dweek: calculation.gregorian_day_week(gy + "/" + gm + "/" + gd),
           hour: Number(hours[0]),
           minute: Number(hours[1]),
-          second: Number(hours[2])
+          second: Number(hours[2]),
+          numeric: new Date(
+            gy +
+              "-" +
+              (gm>9?gm:"0"+gm) +
+              "-" +
+              (gd>9?gd:"0"+gd) +
+              "T" +
+              (hours[0] > 9 ? hours[0] : "0" + hours[0]) +
+              ":" +
+              (hours[1] > 9 ? hours[1] : "0" + hours[1]) +
+              ":" +
+              (hours[2] > 9 ? hours[2] : "0" + hours[2])
+          ).getTime()
         };
       if (jy)
         return {
@@ -352,7 +373,16 @@ const format = [
           dweek: calculation.persian_day_week(date),
           hour: Number(hours[0]),
           minute: Number(hours[1]),
-          second: Number(hours[2]) 
+          second: Number(hours[2]),
+          numeric: new Date(
+            date +
+              "T" +
+              (hours[0] > 9 ? hours[0] : "0" + hours[0]) +
+              ":" +
+              (hours[1] > 9 ? hours[1] : "0" + hours[1]) +
+              ":" +
+              (hours[2] > 9 ? hours[2] : "0" + hours[2])
+          ).getTime()
         };
     }
   },
@@ -365,17 +395,22 @@ const format = [
       let year = date.match(/[0-9][0-9][0-9][0-9]/);
       let TMonth = date.match(/^[a-zA-Z]+[ ][a-zA-Z]+/);
       let month = TMonth[0].match(/[a-zA-Z]+$/);
-      let Tday = date.match( /^[a-zA-Z]+[ ][a-zA-Z]+[ ][0-9]?[0-9]/);
+      let Tday = date.match(/^[a-zA-Z]+[ ][a-zA-Z]+[ ][0-9]?[0-9]/);
       let day = Tday[0].match(/[0-9]?[0-9]$/);
       let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]/);
       let hour = THour[0].match(/^[0-9]?[0-9]/);
       let TMiniut = THour[0].match(/^[0-9]?[0-9][:][0-9]?[0-9]/);
       let miniut = TMiniut[0].match(/[0-9]?[0-9]$/);
       let sec = THour[0].match(/[0-9]?[0-9]$/);
-      return [year[0],calculation.understand_gregorian_month(month[0]), day[0], [hour[0], miniut[0], sec[0]]];
+      return [
+        year[0],
+        calculation.understand_gregorian_month(month[0]),
+        day[0],
+        [hour[0], miniut[0], sec[0]]
+      ];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
-  },
+  }
 ];
 
 module.exports = { format };
