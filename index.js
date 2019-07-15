@@ -131,4 +131,13 @@ ZaravandDate.prototype.week = function (date,convertKind) {
     return _date.dweek;
   }
 }
+
+// این تابع مضاعف، تبدیل تاریخ را انجام می‌دهد و فقط مقدار عددی تاریخ را برحسب میلی ثانیه بر می‌گرداند
+ZaravandDate.prototype.numeric = function (date,convertKind) {
+  let _date = this.convert(date,convertKind,'raw');
+  if(_date.numeric !== undefined){
+    return _date.numeric;
+  }
+}
+
 module.exports = ZaravandDate;

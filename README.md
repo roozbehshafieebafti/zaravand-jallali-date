@@ -187,6 +187,7 @@ Month | _date.Month(Date(),"fa") | تیر
 month | _date.month(Date(),"fa") | 4
 day | _date.day(Date(),"fa") | 21
 week | _date.week(Date(),"fa") | جمعه
+numeric | _date.numeric(Date(),"fa") | 1563203865000
 
 
 
