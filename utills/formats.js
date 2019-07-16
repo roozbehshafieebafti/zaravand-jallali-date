@@ -410,7 +410,53 @@ const format = [
       ];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
-  }
+  },
+
+  {
+    human: "YYYY/MM/DDTHH:MM:SS.S AM",
+    hRegix:false,
+    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/,
+    date_splicer: function(date) {
+      let year = date.slice(0, 4);
+      let TMonth = date.match(/^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9]/);
+      let month = TMonth[0].match(/[0-9]?[0-9]$/);
+      let Tday = date.match(
+        /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
+      );
+      let day = Tday[0].match(/[0-9]?[0-9]$/);
+      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let hour = THour[0].match(/^[0-9]?[0-9]/);
+      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
+      let TSec = date.match(/[0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let sec = TSec[0].match(/^[0-9]?[0-9](\.)([0-9]+)/);
+      return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
+    },
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
+  },
+
+  {
+    human: "YYYY/MM/DDTHH:MM:SS AM",
+    hRegix:false,
+    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/,
+    date_splicer: function(date) {
+      let year = date.slice(0, 4);
+      let TMonth = date.match(/^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9]/);
+      let month = TMonth[0].match(/[0-9]?[0-9]$/);
+      let Tday = date.match(
+        /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
+      );
+      let day = Tday[0].match(/[0-9]?[0-9]$/);
+      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let hour = THour[0].match(/^[0-9]?[0-9]/);
+      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
+      let TSec = date.match(/[0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let sec = TSec[0].match(/^[0-9]?[0-9]/);
+      return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
+    },
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
+  },
 ];
 
 module.exports = { format };
