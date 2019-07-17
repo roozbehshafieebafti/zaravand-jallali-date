@@ -243,13 +243,13 @@ const format = [
       if (gy)
         return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
           gd > 9 ? gd : "0" + gd
-        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${hours[2]}`;
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
-        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${hours[2]}`;
     }
@@ -280,13 +280,15 @@ const format = [
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
       if (gy)
-        return `${gd > 9 ? gd : "0" + gd}${sep}${gm > 9 ? gm : "0" + gm}${sep}${gy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        return `${gd > 9 ? gd : "0" + gd}${sep}${
+          gm > 9 ? gm : "0" + gm
+        }${sep}${gy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${hours[2]}`;
       if (jy)
-        return `${
-          jd > 9 ? jd : "0" + jd
-        }${sep}${jm > 9 ? jm : "0" + jm}${sep}${jy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        return `${jd > 9 ? jd : "0" + jd}${sep}${
+          jm > 9 ? jm : "0" + jm
+        }${sep}${jy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${hours[2]}`;
     }
@@ -316,7 +318,7 @@ const format = [
       if (gy)
         return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
           gd > 9 ? gd : "0" + gd
-        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${
           Math.floor(hours[2]) > 9
@@ -326,7 +328,52 @@ const format = [
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
-        } T ${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${
+          Math.floor(hours[2]) > 9
+            ? Math.floor(hours[2])
+            : "0" + Math.floor(hours[2])
+        }`;
+    }
+  },
+
+  {
+    human: "DD/MM/YYYYTHH:MM:SS",
+    hRegix: /^[Dd][Dd][-_/ \\][Mm][Mm][-_/ \\][Yy][Yy][Yy][Yy][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][Ss]$/,
+    dRegix: /^[0-9]?[0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9][0-9][0-9][0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/,
+    date_splicer: function(date) {
+      let day = date.slice(0, 2);
+      let TMonth = date.match(/^[0-9]?[0-9][-_/ \\][0-9]?[0-9]/);
+      let month = TMonth[0].match(/[0-9]?[0-9]$/);
+      let TYear = date.match(
+        /^[0-9]?[0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9][0-9][0-9][0-9]/
+      );
+      let year = TYear[0].match(/[0-9][0-9][0-9][0-9]$/);
+
+      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9]$/);
+      let hour = THour[0].match(/^[0-9]?[0-9]/);
+      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9]$/);
+      let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
+      let TSec = date.match(/[0-9]?[0-9]$/);
+
+      return [year[0], month[0], day, [hour[0], miniut[0], TSec[0]]];
+    },
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
+      if (gy)
+        return `${gd > 9 ? gd : "0" + gd}${sep}${
+          gm > 9 ? gm : "0" + gm
+        }${sep}${gy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
+          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }:${
+          Math.floor(hours[2]) > 9
+            ? Math.floor(hours[2])
+            : "0" + Math.floor(hours[2])
+        }`;
+      if (jy)
+        return `${jd > 9 ? jd : "0" + jd}${sep}${
+          jm > 9 ? jm : "0" + jm
+        }${sep}${jy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
           hours[1].length > 1 ? hours[1] : "0" + hours[1]
         }:${
           Math.floor(hours[2]) > 9
@@ -390,9 +437,9 @@ const format = [
           numeric: new Date(
             gy +
               "-" +
-              (gm>9?gm:"0"+gm) +
+              (gm > 9 ? gm : "0" + gm) +
               "-" +
-              (gd>9?gd:"0"+gd) +
+              (gd > 9 ? gd : "0" + gd) +
               "T" +
               (hours[0] > 9 ? hours[0] : "0" + hours[0]) +
               ":" +
@@ -449,9 +496,10 @@ const format = [
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
   },
 
-  { // need to repaire
+  {
+    // need to repaire
     human: "YYYY/MM/DDTHH:MM:SS.S AM",
-    hRegix:false,
+    hRegix: false,
     dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
@@ -461,9 +509,13 @@ const format = [
         /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
       );
       let day = Tday[0].match(/[0-9]?[0-9]$/);
-      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let THour = date.match(
+        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/
+      );
       let hour = THour[0].match(/^[0-9]?[0-9]/);
-      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let TMiniut = date.match(
+        /[0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/
+      );
       let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
       let TSec = date.match(/[0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
       let sec = TSec[0].match(/^[0-9]?[0-9](\.)([0-9]+)/);
@@ -472,9 +524,10 @@ const format = [
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
   },
 
-  { // need to repaire
+  {
+    // need to repaire
     human: "YYYY/MM/DDTHH:MM:SS AM",
-    hRegix:false,
+    hRegix: false,
     dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
@@ -484,7 +537,9 @@ const format = [
         /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9]/
       );
       let day = Tday[0].match(/[0-9]?[0-9]$/);
-      let THour = date.match(/[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let THour = date.match(
+        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/
+      );
       let hour = THour[0].match(/^[0-9]?[0-9]/);
       let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
       let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
@@ -493,7 +548,7 @@ const format = [
       return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
-  },
+  }
 ];
 
 module.exports = { format };
