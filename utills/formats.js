@@ -243,14 +243,14 @@ const format = [
       if (gy)
         return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
           gd > 9 ? gd : "0" + gd
-        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${hours[2]}`;
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
-        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${hours[2]}`;
     }
   },
@@ -282,14 +282,14 @@ const format = [
       if (gy)
         return `${gd > 9 ? gd : "0" + gd}${sep}${
           gm > 9 ? gm : "0" + gm
-        }${sep}${gy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }${sep}${gy}T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${hours[2]}`;
       if (jy)
         return `${jd > 9 ? jd : "0" + jd}${sep}${
           jm > 9 ? jm : "0" + jm
-        }${sep}${jy}T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }${sep}${jy}T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${hours[2]}`;
     }
   },
@@ -318,8 +318,8 @@ const format = [
       if (gy)
         return `${gy}${sep}${gm > 9 ? gm : "0" + gm}${sep}${
           gd > 9 ? gd : "0" + gd
-        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${
           Math.floor(hours[2]) > 9
             ? Math.floor(hours[2])
@@ -328,8 +328,8 @@ const format = [
       if (jy)
         return `${jy}${sep}${jm > 9 ? jm : "0" + jm}${sep}${
           jd > 9 ? jd : "0" + jd
-        }T${hours[0].length > 1 ? hours[0] : "0" + hours[0]}:${
-          hours[1].length > 1 ? hours[1] : "0" + hours[1]
+        }T${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
         }:${
           Math.floor(hours[2]) > 9
             ? Math.floor(hours[2])
@@ -397,8 +397,8 @@ const format = [
     },
     date_merger: function({ hours }, sep, date = "") {
       let sec = String(Math.floor(hours[2]));
-      return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
-        hours[1].length > 1 ? hours[1] : "0" + hours[1]
+      return `${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}${sep}${
+        Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
       }${sep}${sec > 9 ? sec : "0" + sec}`;
     }
   },
@@ -413,8 +413,8 @@ const format = [
       return [hour[0], miniut[0]];
     },
     date_merger: function({ hours }, sep, date = "") {
-      return `${hours[0].length > 1 ? hours[0] : "0" + hours[0]}${sep}${
-        hours[1].length > 1 ? hours[1] : "0" + hours[1]
+      return `${Number(hours[0]) > 9 ? hours[0] : "0" + Number(hours[0])}${sep}${
+        Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
       }`;
     }
   },
@@ -497,10 +497,9 @@ const format = [
   },
 
   {
-    // need to repaire
     human: "YYYY/MM/DDTHH:MM:SS.S AM",
     hRegix: false,
-    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/,
+    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
       let TMonth = date.match(/^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9]/);
@@ -510,16 +509,28 @@ const format = [
       );
       let day = Tday[0].match(/[0-9]?[0-9]$/);
       let THour = date.match(
-        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/
+        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/
       );
       let hour = THour[0].match(/^[0-9]?[0-9]/);
       let TMiniut = date.match(
-        /[0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/
+        /[0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/
       );
       let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
-      let TSec = date.match(/[0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z]+$/);
+      let TSec = date.match(/[0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/);
       let sec = TSec[0].match(/^[0-9]?[0-9](\.)([0-9]+)/);
-      return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
+
+      let pm = date.match(/[pP][mM]?(.+)$/);
+      let am = date.match(/[aA][mM]?(.+)$/);
+      let NewHour = hour[0];
+      if (pm !== null) {
+        NewHour = Number(hour[0]) + 12 == 24 ? "12" : Number(hour[0]) + 12;
+      }
+
+      if (am !== null) {
+        NewHour = Number(hour[0]) + 12 == 24 ? "00" : hour[0];
+      }
+
+      return [year, month[0], day[0], [NewHour, miniut[0], sec[0]]];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
   },
@@ -528,7 +539,7 @@ const format = [
     // need to repaire
     human: "YYYY/MM/DDTHH:MM:SS AM",
     hRegix: false,
-    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/,
+    dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z\.]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
       let TMonth = date.match(/^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9]/);
@@ -538,14 +549,25 @@ const format = [
       );
       let day = Tday[0].match(/[0-9]?[0-9]$/);
       let THour = date.match(
-        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/
+        /[0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z\.]+$/
       );
       let hour = THour[0].match(/^[0-9]?[0-9]/);
-      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let TMiniut = date.match(/[0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z\.]+$/);
       let miniut = TMiniut[0].match(/^[0-9]?[0-9]/);
-      let TSec = date.match(/[0-9]?[0-9][T-_/ \\][a-zA-Z]+$/);
+      let TSec = date.match(/[0-9]?[0-9][T-_/ \\][a-zA-Z\.]+$/);
       let sec = TSec[0].match(/^[0-9]?[0-9]/);
-      return [year, month[0], day[0], [hour[0], miniut[0], sec[0]]];
+
+      let pm = date.match(/[pP][mM]?(.+)$/);
+      let am = date.match(/[aA][mM]?(.+)$/);
+      let NewHour = hour[0];
+      if (pm !== null) {
+        NewHour = Number(hour[0]) + 12 == 24 ? "12" : Number(hour[0]) + 12;
+      }
+
+      if (am !== null) {
+        NewHour = Number(hour[0]) + 12 == 24 ? "00" : hour[0];
+      }
+      return [year, month[0], day[0], [NewHour, miniut[0], sec[0]]];
     },
     date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
   }
