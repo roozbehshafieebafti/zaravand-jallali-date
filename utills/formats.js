@@ -550,19 +550,19 @@ const format = [
       }
       if (gy) {
         return `${gy}${sep}${gm}${sep}${gd}T${hour > 9 ? hour : "0" + hour}:${
-          Number(hours[1]) > 9 ? hours[1] : "0" + hours[1]
-        }:${Number(hours[2]) > 9 ? hours[2] : "0" + hours[2]} ${end}`;
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${Number(hours[2]) > 9 ? hours[2] : "0" + Number(hours[2])} ${end}`;
       } else if (jy) {
         return `${jy}${sep}${jm}${sep}${jd}T${hour > 9 ? hour : "0" + hour}:${
-          Number(hours[1]) > 9 ? hours[1] : "0" + hours[1]
-        }:${Number(hours[2]) > 9 ? hours[2] : "0" + hours[2]} ${end}`;
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${Number(hours[2]) > 9 ? hours[2] : "0" + Number(hours[2])} ${end}`;
       }
     }
   },
 
   {
     human: "DD/MM/YYYYTHH:MM:SS.S AM",
-    hRegix: false,
+    hRegix: /^[Dd][Dd][-_/ \\][Mm][Mm][-_/ \\][Yy][Yy][Yy][Yy][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][sS](\.)[Ss][-_/ \\][AaPp][Mm]$/,
     dRegix: /^[0-9]?[0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9][0-9][0-9][0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/,
     date_splicer: function(date) {
       let day = date.match(/^[0-9]?[0-9]/);
@@ -596,7 +596,26 @@ const format = [
 
       return [year[0], month[0], day[0], [NewHour, miniut[0], sec[0]]];
     },
-    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
+      let end = "",
+        hour = 0;
+      if (Number(hours[0]) > 12) {
+        hour = Number(hours[0]) - 12;
+        end = "PM";
+      } else {
+        hour = Number(hours[0]) === 0 ? 12 : Number(hours[0]);
+        end = "AM";
+      }
+      if (gy) {
+        return `${gd}${sep}${gm}${sep}${gy}T${hour > 9 ? hour : "0" + hour}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${Number(hours[2]) > 9 ? hours[2] : "0" + Number(hours[2])} ${end}`;
+      } else if (jy) {
+        return `${jd}${sep}${jm}${sep}${jy}T${hour > 9 ? hour : "0" + hour}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${Number(hours[2]) > 9 ? hours[2] : "0" + Number(hours[2])} ${end}`;
+      }
+    }
   },
 
   {
