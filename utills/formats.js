@@ -504,7 +504,7 @@ const format = [
 
   {
     human: "YYYY/MM/DDTHH:MM:SS.S AM",
-    hRegix:/^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][sS](\.)[Ss][-_/ \\][AaPp][Mm]$/,
+    hRegix: /^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][sS](\.)[Ss][-_/ \\][AaPp][Mm]$/,
     dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9](\.)([0-9]+)[T-_/ \\][a-zA-Z\.]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
@@ -620,7 +620,7 @@ const format = [
 
   {
     human: "YYYY/MM/DDTHH:MM:SS AM",
-    hRegix: false,
+    hRegix: /^[Yy][Yy][Yy][Yy][-_/ \\][Mm][Mm][-_/ \\][Dd][Dd][T-_/ \\][Hh][Hh]:[Mm][Mm]:[Ss][sS][-_/ \\][AaPp][Mm]$/,
     dRegix: /^[0-9][0-9][0-9][0-9][-_/ \\][0-9]?[0-9][-_/ \\][0-9]?[0-9][T-_/ \\][0-9]?[0-9][:][0-9]?[0-9][:][0-9]?[0-9][T-_/ \\][a-zA-Z\.]+$/,
     date_splicer: function(date) {
       let year = date.slice(0, 4);
@@ -653,7 +653,34 @@ const format = [
       }
       return [year, month[0], day[0], [NewHour, miniut[0], sec[0]]];
     },
-    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {}
+    date_merger: function({ gy, gm, gd, jy, jm, jd, hours }, sep, date = "") {
+      let end = "",
+        hour = 0;
+      if (Number(hours[0]) > 12) {
+        hour = Number(hours[0]) - 12;
+        end = "PM";
+      } else {
+        hour = Number(hours[0]) === 0 ? 12 : Number(hours[0]);
+        end = "AM";
+      }
+      if (gy) {
+        return `${gy}${sep}${gm}${sep}${gd}T${hour > 9 ? hour : "0" + hour}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${
+          Number(hours[2]) > 9
+            ? Math.floor(Number(hours[2]))
+            : "0" + Math.floor(Number(hours[2]))
+        } ${end}`;
+      } else if (jy) {
+        return `${jy}${sep}${jm}${sep}${jd}T${hour > 9 ? hour : "0" + hour}:${
+          Number(hours[1]) > 9 ? hours[1] : "0" + Number(hours[1])
+        }:${
+          Number(hours[2]) > 9
+            ? Math.floor(Number(hours[2]))
+            : "0" + Math.floor(Number(hours[2]))
+        } ${end}`;
+      }
+    }
   },
 
   {
